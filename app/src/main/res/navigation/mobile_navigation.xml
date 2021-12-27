@@ -9,17 +9,13 @@
         android:id="@+id/nav_news"
         android:name="com.example.russiansport.presentation.ui.news.NewsFragment"
         android:label="@string/news"
-        tools:layout="@layout/fragment_news" >
-        <action
-            android:id="@+id/action_nav_news_to_nav_detail"
-            app:destination="@id/nav_detail" />
-    </fragment>
+        tools:layout="@layout/fragment_news" />
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.russiansport.presentation.ui.gallery.GalleryFragment"
+        android:name="com.example.russiansport.presentation.ui.matches.MatchesFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_matches" />
 
     <fragment
         android:id="@+id/nav_slideshow"
@@ -27,9 +23,4 @@
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 
-    <fragment
-        android:id="@+id/nav_detail"
-        android:name="com.example.russiansport.presentation.ui.news.NewsDetailFragment"
-        android:label="@string/news"
-        tools:layout="@layout/fragment_news_detail" />
 </navigation>

@@ -3,13 +3,15 @@ package com.example.russiansport.presentation.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.russiansport.R
 import com.example.russiansport.databinding.ItemNewsBinding
 import com.example.russiansport.domain.pojo.NewsUnit
+import com.example.russiansport.presentation.ui.news.NewsDetailFragment
 import com.squareup.picasso.Picasso
 
-class AdapterNews : RecyclerView.Adapter<AdapterNews.ViewHolderNews>() {
+class AdapterNews(private val fragmentManager: FragmentManager) : RecyclerView.Adapter<AdapterNews.ViewHolderNews>() {
     inner class ViewHolderNews(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemNewsBinding.bind(itemView)
         val image = binding.imageViewNews
@@ -43,7 +45,8 @@ class AdapterNews : RecyclerView.Adapter<AdapterNews.ViewHolderNews>() {
         }
         holder.itemView.setOnClickListener {
           onNewsClickListener?.invoke(item)
-
+            val dialog = NewsDetailFragment(item)
+            dialog.show(fragmentManager,"detail")
         }
     }
 
