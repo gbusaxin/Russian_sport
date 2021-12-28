@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.russiansport.databinding.FragmentMatchesBinding
 import com.example.russiansport.domain.pojo.MatchUnit
 import com.example.russiansport.presentation.adapters.AdapterMatch
+import kotlinx.coroutines.*
 
 class MatchesFragment : Fragment() {
 
@@ -42,7 +43,7 @@ class MatchesFragment : Fragment() {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 Log.d("P_ZERO",p0?.selectedItem.toString())
                 if (p2!=0) {
-                    adapter.filter.filter(p0?.selectedItem.toString() as CharSequence)
+                    adapter.filter.filter(p0?.selectedItem.toString())
                 }
                 Log.d("P_ONE",p1.toString())
                 Log.d("P_TWO",p2.toString())
@@ -53,6 +54,14 @@ class MatchesFragment : Fragment() {
 
             }
 
+        }
+    }
+
+    @DelicateCoroutinesApi
+    override fun onDestroy() {
+        super.onDestroy()
+        GlobalScope.launch {
+            viewModel.deleteAllData()
         }
     }
 

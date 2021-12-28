@@ -22,7 +22,7 @@ class ViewModelMatches(application: Application):AndroidViewModel(application) {
 
     val matchesList = getMatchesListUseCase()
 
-    fun deleteAllData() = deleteMatchesUseCase()
+    suspend fun deleteAllData() = deleteMatchesUseCase()
 
     init {
         viewModelScope.launch {

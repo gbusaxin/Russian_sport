@@ -6,6 +6,6 @@ import com.example.russiansport.domain.pojo.MatchUnit
 interface RepositoryMatchUnit {
     fun getMatchesList():LiveData<List<MatchUnit>>
     fun getMatchesBySportList(sport:String):LiveData<List<MatchUnit>>
-    fun deleteMatchesList()
+    suspend fun deleteMatchesList()
     suspend fun loadMatchesList()
 }

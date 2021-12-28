@@ -27,7 +27,7 @@ class RepositoryMatchUnitImpl(application: Application) : RepositoryMatchUnit {
         }
     }
 
-    override fun deleteMatchesList() {
+    override suspend fun deleteMatchesList() {
         db.deleteAll()
     }
 

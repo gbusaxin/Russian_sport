@@ -6,14 +6,16 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.russiansport.data.database.models.MatchDbModel
 import com.example.russiansport.data.database.models.NewsDbModel
+import com.example.russiansport.data.database.models.TournamentDbModel
 
 @Database(
     entities =
     [
         NewsDbModel::class,
-        MatchDbModel::class
+        MatchDbModel::class,
+        TournamentDbModel::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

@@ -7,6 +7,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.russiansport.data.database.models.MatchDbModel
 import com.example.russiansport.data.database.models.NewsDbModel
+import com.example.russiansport.data.database.models.TournamentDbModel
 import com.example.russiansport.domain.pojo.MatchUnit
 
 @Dao
@@ -29,4 +30,10 @@ interface DbDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertMatchesListDbModel(dbModel: List<MatchDbModel>)
+
+    @Query("SELECT * FROM table_tournament")
+    fun getTournamentDbModelList(): LiveData<List<TournamentDbModel>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertTournamentDbModel(dbModel: List<TournamentDbModel>)
 }
