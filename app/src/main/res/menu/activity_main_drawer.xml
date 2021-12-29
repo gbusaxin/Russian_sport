@@ -10,11 +10,15 @@
             android:title="@string/news" />
         <item
             android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_match"
             android:title="@string/matches" />
         <item
             android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_baseline_event_24"
             android:title="@string/tournaments" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/settings_" />
     </group>
 </menu>

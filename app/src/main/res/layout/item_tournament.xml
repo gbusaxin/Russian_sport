@@ -25,45 +25,89 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="5dp"
         android:text="TextView"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewTournament"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/darkGrey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewTournament"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTournamentLeague" />
 
     <TextView
         android:id="@+id/textViewTournamentCountry"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="5dp"
         android:text="TextView"
+        android:textColor="@color/darkGrey"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewTournament"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTournamentLeague" />
+        app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+    <View
+        android:id="@+id/view8"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/darkGrey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewTournament"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTournamentCountry" />
 
     <TextView
         android:id="@+id/textViewTournamentCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="5dp"
         android:text="TextView"
+        android:textColor="@color/darkGrey"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewTournament"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTournamentCountry" />
+        app:layout_constraintTop_toBottomOf="@+id/view8" />
+
+    <View
+        android:id="@+id/view9"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/darkGrey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewTournament"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTournamentCategory" />
 
     <TextView
         android:id="@+id/textViewTournamentDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:layout_marginEnd="5dp"
         android:text="TextView"
+        android:textColor="@color/darkGrey"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewTournament"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTournamentCategory" />
+        app:layout_constraintTop_toBottomOf="@+id/view9" />
 
     <View
         android:layout_width="0dp"

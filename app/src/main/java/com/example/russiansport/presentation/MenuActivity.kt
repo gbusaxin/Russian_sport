@@ -1,5 +1,6 @@
 package com.example.russiansport.presentation
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.example.russiansport.R
 import com.example.russiansport.databinding.ActivityMenuBinding
 import com.google.android.material.navigation.NavigationView
@@ -24,6 +28,8 @@ class MenuActivity : AppCompatActivity() {
         binding = ActivityMenuBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        loadJsonPicture()
+
         setSupportActionBar(binding.appBarMenu.toolbar)
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
@@ -33,7 +39,7 @@ class MenuActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_news, R.id.nav_gallery, R.id.nav_slideshow
+                R.id.nav_news, R.id.nav_gallery, R.id.nav_slideshow , R.id.nav_settings
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -49,5 +55,21 @@ class MenuActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_menu)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    private fun loadJsonPicture() {
+        try {
+            Glide.with(this).load("http://95.217.132.144/russian_sport/background_image.jpg")
+                .into(object : CustomTarget<Drawable>() {
+                    override fun onResourceReady(dr: Drawable, tran: Transition<in Drawable?>?) {
+                        binding.drawerLayout.background = dr
+                    }
+
+                    override fun onLoadCleared(p0: Drawable?) {
+
+                    }
+                })
+        } catch (e: Exception) {
+        }
     }
 }

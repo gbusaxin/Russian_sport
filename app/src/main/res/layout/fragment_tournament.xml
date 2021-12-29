@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/full_transparent"
     tools:context=".presentation.ui.tournaments.TournamentFragment">
 
 
@@ -17,7 +18,7 @@
         app:tabGravity="center"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/orange"
-        app:tabTextColor="@color/white"
+        app:tabTextColor="@color/darkGrey"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.viewpager.widget.ViewPager
