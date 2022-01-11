@@ -3,6 +3,8 @@
     package="com.example.russiansport">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:usesCleartextTraffic="true"
@@ -11,7 +13,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.RussianSport">
+        android:theme="@style/Theme.RussianSport"
+        android:name=".presentation.SignalInit">
         <activity
             android:name=".presentation.MenuActivity"
             android:exported="true"

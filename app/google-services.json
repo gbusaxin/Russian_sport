@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "313995386344",
+    "project_id": "russiansport-cf68c",
+    "storage_bucket": "russiansport-cf68c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313995386344:android:19ca7eddcfc7d23f86985d",
+        "android_client_info": {
+          "package_name": "com.example.russiansport"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313995386344-5amh6gn1iupl07ie2veq3l4o7qj7ipbk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnVyHXkja2XvMri2487u6LLRjCmf7a4Es"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313995386344-5amh6gn1iupl07ie2veq3l4o7qj7ipbk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
