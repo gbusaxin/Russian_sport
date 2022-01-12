@@ -2,6 +2,7 @@ package com.example.russiansport.presentation
 
 import android.app.Application
 import com.onesignal.OneSignal
+import com.onesignal.OneSignalNotificationManager
 
 class SignalInit : Application() {
 

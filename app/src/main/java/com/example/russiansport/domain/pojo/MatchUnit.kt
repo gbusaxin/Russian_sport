@@ -1,6 +1,8 @@
 package com.example.russiansport.domain.pojo
 
+import androidx.annotation.Keep
 
+@Keep
 data class MatchUnit(
 
     val team1: String,

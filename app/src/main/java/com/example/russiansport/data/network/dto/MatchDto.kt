@@ -1,12 +1,13 @@
 package com.example.russiansport.data.network.dto
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
 
 
 
-
+@Keep
 data class MatchDto (
     @SerializedName("team1")
     @Expose

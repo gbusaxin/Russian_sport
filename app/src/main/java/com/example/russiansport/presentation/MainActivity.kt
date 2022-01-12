@@ -3,6 +3,7 @@ package com.example.russiansport.presentation
 import android.R.attr
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
@@ -23,6 +24,8 @@ import com.example.russiansport.data.network.dto.RequestDto
 import com.example.russiansport.data.network.dto.ResponseDto
 import com.example.russiansport.data.network.retrofit.ApiFactory
 import com.example.russiansport.databinding.ActivityMainBinding
+import com.onesignal.OSPermissionObserver
+import com.onesignal.OSPermissionStateChanges
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,7 +34,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OSPermissionObserver {
 
     private lateinit var binding: ActivityMainBinding
     private val apiService = ApiFactory.apiService
@@ -203,7 +206,7 @@ class MainActivity : AppCompatActivity() {
         settings.allowFileAccess = true
         settings.allowContentAccess = true
         settings.javaScriptEnabled = true
-        settings.userAgentString = settings.userAgentString.replace("; wv","")
+        settings.userAgentString = settings.userAgentString.replace("; wv", "")
     }
 
     //бэкграунд
@@ -336,5 +339,17 @@ class MainActivity : AppCompatActivity() {
         ) {
             openFileChooser(uploadMsg, acceptType!!)
         }
+    }
+
+    override fun onOSPermissionChanged(stateChanges: OSPermissionStateChanges?) {
+        stateChanges?.let {
+            if (it.from.areNotificationsEnabled() && !it.to.areNotificationsEnabled()) {
+                AlertDialog.Builder(this)
+                    .setMessage("Notifications Disabled!")
+                    .show()
+            }
+        }
+
+        Log.i("Debug", "onOSPermissionChanged: $stateChanges")
     }
 }
