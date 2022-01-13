@@ -74,34 +74,26 @@ class MainActivity : AppCompatActivity(), OSPermissionObserver {
             webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
 
-        val prefs = applicationContext.getSharedPreferences(packageName, Activity.MODE_PRIVATE)
-        val str = prefs.getString("LastUrl", "")
-        if (str != null) {
-            supportActionBar?.hide()
-            webView.webViewClient = CustomWebClient(applicationContext, progressBar)
-            webView.webChromeClient = CustomChromeClient()
-            webView.loadUrl(str)
-        } else {
-            val request = responseDto.enqueue(object : Callback<ResponseDto> {
-                @SuppressLint("SetJavaScriptEnabled")
-                override fun onResponse(p0: Call<ResponseDto>, p1: Response<ResponseDto>) {
-                    Log.d("P1BODY", "Ответ - ${p1.body().toString()}")
-                    if (p1.body()?.response == "no") {
-                        startActivity(Intent(this@MainActivity, MenuActivity::class.java))
-                    } else {
-                        supportActionBar?.hide()
-                        webView.webViewClient = CustomWebClient(applicationContext, progressBar)
-                        webView.webChromeClient = CustomChromeClient()
-                        webView.loadUrl(p1.body()?.response ?: "")
-                    }
-                }
-
-                override fun onFailure(p0: Call<ResponseDto>, p1: Throwable) {
+        val request = responseDto.enqueue(object : Callback<ResponseDto> {
+            @SuppressLint("SetJavaScriptEnabled")
+            override fun onResponse(p0: Call<ResponseDto>, p1: Response<ResponseDto>) {
+                Log.d("P1BODY", "Ответ - ${p1.body().toString()}")
+                if (p1.body()?.response == "no") {
                     startActivity(Intent(this@MainActivity, MenuActivity::class.java))
-                    Log.d("ONFAILURE", p1.message.toString())
+                } else {
+                    supportActionBar?.hide()
+                    webView.webViewClient = CustomWebClient(applicationContext, progressBar)
+                    webView.webChromeClient = CustomChromeClient()
+                    webView.loadUrl(p1.body()?.response ?: "")
                 }
-            })
-        }
+            }
+
+            override fun onFailure(p0: Call<ResponseDto>, p1: Throwable) {
+                startActivity(Intent(this@MainActivity, MenuActivity::class.java))
+                Log.d("ONFAILURE", p1.message.toString())
+            }
+        })
+
 
         // обновление страницы
         refreshLay.setOnRefreshListener(object : SwipeRefreshLayout.OnRefreshListener {
@@ -167,25 +159,25 @@ class MainActivity : AppCompatActivity(), OSPermissionObserver {
         return
     }
 
-    override fun onPause() {
-        super.onPause()
-        val prefs = applicationContext.getSharedPreferences(packageName, Activity.MODE_PRIVATE)
-        val editor = prefs.edit()
-        editor.putString("LastUrl", webView.url)
-        editor.commit()
-    }
+//    override fun onPause() {
+//        super.onPause()
+//        val prefs = applicationContext.getSharedPreferences(packageName, Activity.MODE_PRIVATE)
+//        val editor = prefs.edit()
+//        editor.putString("LastUrl", webView.url)
+//        editor.commit()
+//    }
 
     //check user's history if empty -> post to server, if not empty -> load last url
-    override fun onResume() {
-        super.onResume()
-        if (webView != null) {
-            val prefs = applicationContext.getSharedPreferences(packageName, Activity.MODE_PRIVATE)
-            val str = prefs.getString("LastUrl", "")
-            if (str != null) {
-                webView.loadUrl(str)
-            }
-        }
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        if (webView != null) {
+//            val prefs = applicationContext.getSharedPreferences(packageName, Activity.MODE_PRIVATE)
+//            val str = prefs.getString("LastUrl", "")
+//            if (str != null) {
+//                webView.loadUrl(str)
+//            }
+//        }
+//    }
 
     //нажатие назад к вебклиенту или приложению
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
