@@ -7,8 +7,13 @@ import android.view.View
 import android.webkit.*
 import android.widget.ProgressBar
 import android.widget.Toast
+import java.net.HttpCookie
+import java.net.URI
 
 class CustomWebClient(private val context: Context,private val progressBar: ProgressBar) : WebViewClient() {
+
+    private val cookieManager = java.net.CookieManager()
+
     override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
         view?.loadUrl(request?.url.toString())
         return true
@@ -36,5 +41,14 @@ class CustomWebClient(private val context: Context,private val progressBar: Prog
     override fun onPageFinished(view: WebView?, url: String?) {
         super.onPageFinished(view, url)
         progressBar.visibility = View.INVISIBLE
+        CookieManager
+            .getInstance()
+            .getCookie(url)
+            ?.let {
+                val uri = URI(url)
+                HttpCookie.parse(it).forEach {
+                    cookieManager.cookieStore.add(uri,it)
+                }
+            }
     }
 }

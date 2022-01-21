@@ -76,6 +76,9 @@ class MainActivity : AppCompatActivity(), OSPermissionObserver {
             webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
 
+        val cookieManager = CookieManager.getInstance()
+        cookieManager.setAcceptCookie(true)
+
         val request = responseDto.enqueue(object : Callback<ResponseDto> {
             @SuppressLint("SetJavaScriptEnabled")
             override fun onResponse(p0: Call<ResponseDto>, p1: Response<ResponseDto>) {
