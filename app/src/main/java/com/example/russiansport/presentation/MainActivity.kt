@@ -2,10 +2,11 @@ package com.example.russiansport.presentation
 
 import android.R.attr
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.*
@@ -14,6 +15,7 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.webkit.*
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.ConfigurationCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -117,7 +119,7 @@ class MainActivity : AppCompatActivity(), OSPermissionObserver {
             }
             var results: Array<Uri>? = null
             // Check that the response is a good one
-            if (resultCode === RESULT_OK) {
+            if (resultCode == RESULT_OK) {
                 if (attr.data == null) {
                     // If there is not data, then we may have taken a photo
                     if (mCameraPhotoPath != null) {
@@ -138,7 +140,7 @@ class MainActivity : AppCompatActivity(), OSPermissionObserver {
                 return
             }
             if (requestCode == FILECHOOSER_RESULTCODE) {
-                if (null == this.mUploadMessage) {
+                if (null == mUploadMessage) {
                     return
                 }
                 var result: Uri? = null
@@ -234,6 +236,45 @@ class MainActivity : AppCompatActivity(), OSPermissionObserver {
     }
 
     inner class CustomChromeClient : WebChromeClient() {
+
+        private var mCustomView: View? = null
+        private var mCustomViewCallback: CustomViewCallback? = null
+        private var mOriginalOrientation = 0
+        private var mOriginalSystemUiVisibility = 0
+
+        override fun getDefaultVideoPoster(): Bitmap? {
+            return if (mCustomView == null) {
+                null
+            } else BitmapFactory.decodeResource(applicationContext.resources, 2130837573)
+        }
+
+        override fun onHideCustomView() {
+            (window.decorView as FrameLayout).removeView(mCustomView)
+            mCustomView = null
+            window.decorView.systemUiVisibility = mOriginalSystemUiVisibility
+            requestedOrientation = mOriginalOrientation
+            mCustomViewCallback!!.onCustomViewHidden()
+            mCustomViewCallback = null
+        }
+
+        override fun onShowCustomView(
+            paramView: View?,
+            paramCustomViewCallback: CustomViewCallback?
+        ) {
+            if (mCustomView != null) {
+                onHideCustomView()
+                return
+            }
+            mCustomView = paramView
+            mOriginalSystemUiVisibility = window.decorView.systemUiVisibility
+            mOriginalOrientation = requestedOrientation
+            mCustomViewCallback = paramCustomViewCallback
+            (window.decorView as FrameLayout).addView(
+                mCustomView,
+                FrameLayout.LayoutParams(-1, -1)
+            )
+            window.decorView.systemUiVisibility = 3846 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        }
 
         //android 5.0
         override fun onShowFileChooser(
