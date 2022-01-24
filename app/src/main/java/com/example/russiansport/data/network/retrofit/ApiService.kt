@@ -14,8 +14,11 @@ interface ApiService {
     @GET("sport_matches.json")
     suspend fun loadMatchesList():List<MatchDto>
 
-    @GET("sport_tournaments.json")
-    suspend fun loadTournamentData():List<TournamentDto>
+    @GET("sport_hockey.json")
+    suspend fun loadHockeyList():List<HockeyDto>
+
+    @GET("sport_football.json")
+    suspend fun loadFootballList():List<FootballDto>
 
     @POST("splash.php")
     fun sendLocale(@Body locale: RequestDto): Call<ResponseDto>

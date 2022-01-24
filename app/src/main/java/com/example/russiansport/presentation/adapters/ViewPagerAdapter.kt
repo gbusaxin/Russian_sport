@@ -20,6 +20,7 @@ class ViewPagerAdapter (manager: FragmentManager): FragmentPagerAdapter(manager)
     fun addFragment(fragment: Fragment, title:String){
         fragmentList.add(fragment)
         titleList.add(title)
+        notifyDataSetChanged()
     }
 
     override fun getPageTitle(position: Int): CharSequence? {

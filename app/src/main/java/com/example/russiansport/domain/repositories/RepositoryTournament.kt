@@ -7,6 +7,9 @@ import com.example.russiansport.domain.pojo.TournamentsUnit
 
 interface RepositoryTournament {
 
-    fun getTournamentUnit():LiveData<List<TournamentsUnit>>
-    suspend fun loadTournamentUnit()
+    fun getHockey():LiveData<List<HockeyUnit>>
+    fun getFootball():LiveData<List<FootballUnit>>
+
+    suspend fun loadHockey()
+    suspend fun loadFootball()
 }

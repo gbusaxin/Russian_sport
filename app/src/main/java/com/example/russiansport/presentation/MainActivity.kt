@@ -83,7 +83,8 @@ class MainActivity : AppCompatActivity(), OSPermissionObserver {
             @SuppressLint("SetJavaScriptEnabled")
             override fun onResponse(p0: Call<ResponseDto>, p1: Response<ResponseDto>) {
                 Log.d("P1BODY", "Ответ - ${p1.body().toString()}")
-                if (p1.body()?.response == "no") {
+//                if (p1.body()?.response == "no") {
+                if ("no" == "no") {
                     startActivity(Intent(this@MainActivity, MenuActivity::class.java))
                 } else {
                     supportActionBar?.hide()

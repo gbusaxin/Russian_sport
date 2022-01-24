@@ -24,7 +24,7 @@ class TournamentFragment : Fragment() {
     ): View? {
         hockey = HockeyFragment()
         football = FootballFragment()
-        adapter = ViewPagerAdapter(childFragmentManager)
+        adapter = ViewPagerAdapter(requireFragmentManager())
         binding = FragmentTournamentBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -35,6 +35,7 @@ class TournamentFragment : Fragment() {
         val viewPager = binding.viewPager
         adapter.addFragment(hockey,"Хоккей")
         adapter.addFragment(football,"Футбол")
+        adapter.notifyDataSetChanged()
         viewPager.adapter = adapter
         tabLayout.setupWithViewPager(viewPager)
     }

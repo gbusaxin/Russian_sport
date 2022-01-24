@@ -1,27 +1,29 @@
 package com.example.russiansport.presentation.ui.tournaments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.russiansport.R
 import com.example.russiansport.databinding.FragmentHockeyBinding
 import com.example.russiansport.presentation.adapters.AdapterHockey
+import java.util.*
 
 
 class HockeyFragment : Fragment() {
 
     private lateinit var binding : FragmentHockeyBinding
     private lateinit var adapter: AdapterHockey
-    private lateinit var viewModel:ViewModelTournament
+    private val viewModel:ViewModelTournament by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel = ViewModelProvider(this)[ViewModelTournament::class.java]
         adapter = AdapterHockey()
         binding = FragmentHockeyBinding.inflate(inflater,container,false)
         // Inflate the layout for this fragment
@@ -31,9 +33,9 @@ class HockeyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val rvHockey = binding.rvHockey
-        viewModel.tournament.observe(viewLifecycleOwner,{
-            val hockey = it[0].hockey
-            adapter.list = hockey
+        viewModel.getHockeyList.observe(viewLifecycleOwner,{
+            Log.d("CHECK_DATA",it.toString())
+            adapter.list = it
             rvHockey.adapter = adapter
         })
     }
