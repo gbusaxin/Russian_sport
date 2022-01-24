@@ -39,22 +39,22 @@ class MatchesFragment : Fragment() {
             rvMatches.adapter = adapter
         })
 
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                Log.d("P_ZERO",p0?.selectedItem.toString())
-                if (p2!=0) {
-                    adapter.filter.filter(p0?.selectedItem.toString())
-                }
-                Log.d("P_ONE",p1.toString())
-                Log.d("P_TWO",p2.toString())
-                Log.d("P_TREE",p3.toString())
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-
-            }
-
-        }
+//        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+//            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+//                Log.d("P_ZERO",p0?.selectedItem.toString())
+//                if (p2!=0) {
+//                    adapter.filter.filter(p0?.selectedItem as CharSequence?)
+//                }
+//                Log.d("P_ONE",p1.toString())
+//                Log.d("P_TWO",p2.toString())
+//                Log.d("P_TREE",p3.toString())
+//            }
+//
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//
+//            }
+//
+//        }
     }
 
     @DelicateCoroutinesApi

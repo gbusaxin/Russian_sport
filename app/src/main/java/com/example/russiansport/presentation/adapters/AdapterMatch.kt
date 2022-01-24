@@ -61,7 +61,7 @@ class AdapterMatch(var list: ArrayList<MatchUnit>) : RecyclerView.Adapter<Adapte
                     filteredList = list
                 }else{
                     val result = ArrayList<MatchUnit>()
-                    for (item in filteredList){
+                    for (item in list){
                         if (item.sport.lowercase(Locale.ROOT)
                                 .trim()
                                 .contains(charSearch.lowercase(Locale.ROOT))){
